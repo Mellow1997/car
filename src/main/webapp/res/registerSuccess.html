@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+    /*取消默认样式*/
+    *{
+    margin: 0;
+    padding: 0;
+    }
+
+    /*设置logo区宽度*/
+    #logo{
+        width: 1920px;
+        /*background-color: skyblue;*/
+    }
+
+    #logofont{
+        width: 1000px;
+        height: 90px;
+    /*background-color: blueviolet;*/
+        margin: 5px auto 0px;
+    }
+
+    /*设置 logo 的字体大小*/
+    #logofont span:first-child{
+        font-size: 50px;
+        color: rgb(66, 133, 244);
+    }
+
+    #logofont span:nth-child(2){
+    font-size: 40px;
+    color: rgb(234, 67, 53);
+    }
+    #logofont span:last-child{
+    font-size: 25px;
+    color: rgb(251, 188, 5);
+    }
+
+    /*设置 span 间距*/
+    #logofont span{
+    margin: 0 5px;
+    }
+
+    .leftimg>img{
+        width: 1000px;
+        height: 800px;
+    }
+
+
+    .right{
+        float: right;
+        position: relative;
+    }
+
+    .right>a{
+        width: 300px;
+        height: 50px;
+        background-color: orange;
+        text-align: center;
+        line-height: 50px;
+        position: absolute;
+        top: 400px;
+        right: 300px;
+        float: left;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
+     .right>img{
+         position: absolute;
+         top: 100px;
+         right: 300px;
+     }
+
+    </style>
+
+</head>
+<body>
+<!--logo区-->
+<div id="logo">
+    <div id="logofont">
+        <span>X</span>
+        <span>x</span>
+        <span>租车</span>
+    </div>
+</div>
+<!--logo区结束-->
+<div id="content">
+    <div class="right">
+        <img src="../img/success.png" alt="">
+        <a href="../index.html">立即登录</a>
+    </div>
+
+    <div class="leftimg">
+        <img src="../img/car.jpg" alt="">
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

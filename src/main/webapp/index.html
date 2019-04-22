@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url("img/car.jpg");
+            overflow:auto;
+        }
+
+        /*设置登陆区样式*/
+        #login {
+            width: 450px;
+            height: 470px;
+            background-color: white;
+            margin-top: 150px;
+            float: right;
+            margin-right: 220px;
+            opacity: 0.8;
+        }
+
+        /*设置登陆头*/
+        #loginHead {
+            width: 100%;
+            list-style: none;
+            height: 60px;
+            background-color: white;
+        }
+
+        /*设置登陆头li浮动*/
+        #loginHead li {
+            float: left;
+            width: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+        }
+
+        /*设置登陆头背景颜色*/
+        #merchantHead{
+            background-color: rgb(148, 148, 148);
+        }
+
+        /*初始隐藏商家登陆表单*/
+        #merchantBody {
+            display: none;
+        }
+
+        #consumerBody{
+            display: block;
+        }
+
+        /*设置内容区样式*/
+        #loginBody {
+            height: 150px;
+            margin: 20px 25px;
+        }
+
+
+        /*设置表单样式*/
+        #loginBody input {
+            width: 396px;
+            height: 45px;
+            margin-bottom: 15px;
+        }
+
+        #loginBody span {
+            font-size: 20px;
+            float: right;
+            margin-right: 25px;
+        }
+
+        /*设置按钮样式*/
+        #bu {
+            height: 140px;
+            text-align: center;
+        }
+
+        #bu button {
+            height: 60px;
+            width: 400px;
+            border-radius: 5px;
+        }
+        /*登陆按钮*/
+        #loginBu{
+            background-color: rgb(250, 190, 0);
+            font-size: 25px;
+            color: white;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        #loginBu:hover{
+            cursor: pointer;
+        }
+
+        /*注册按钮*/
+        #resigterBu{
+            margin-top:15px;
+            background-color: rgb(205, 206, 207);
+            font-size: 20px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        #resigterBu:hover{
+            cursor: pointer;
+        }
+        /*设置按钮中a标签*/
+        #resigterBu a{
+            text-decoration: none;
+        }
+
+        #resigterBu a:hover{
+            text-decoration: underline;
+        }
+
+        #resigterBu a:visited{
+            color: blue;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var conFlag = true;
+
+            //获取登陆头
+            var consumerHead = document.getElementById("consumerHead");
+            var merchantHead = document.getElementById("merchantHead");
+
+            //获取登陆表单
+            var merchantBody = document.getElementById("merchantBody");
+            var consumerBody = document.getElementById("consumerBody");
+
+            //设置登陆头的背景色
+            //点击用户，背景变暗
+            consumerHead.onclick = function(){
+                conFlag = true;
+                consumerHead.style.backgroundColor = "white";
+                merchantHead.style.backgroundColor = "rgb(148, 148, 148)";
+                consumerBody.style.display = "block";
+                merchantBody.style.display = "none";
+
+            };
+            //点击管理员，背景变暗
+            merchantHead.onclick = function(){
+                conFlag = false;
+                consumerHead.style.backgroundColor = "rgb(148, 148, 148)";
+                merchantHead.style.backgroundColor = "white";
+                merchantBody.style.display = "block";
+                consumerBody.style.display = "none";
+
+            };
+
+            //设置登陆按钮 提交
+            var loginBu = document.getElementById("loginBu");
+            loginBu.onclick = function () {
+                if (conFlag){
+                    consumerBody.submit();
+                }else{
+                    merchantBody.submit();
+                }
+            };
+
+        };
+
+    </script>
+
+</head>
+<body>
+<!-- 登陆区 -->
+<div id="login">
+    <!--登陆头 -->
+    <ul id="loginHead">
+        <li id="consumerHead">普通用户</li>
+        <li id="merchantHead">管理员</li>
+    </ul>
+    <!--登陆头结束 -->
+
+    <!-- 内容区 -->
+    <div id="loginBody">
+        <!-- 普通用户登陆 -->
+        <form action="LoginServlet" method="post" id="consumerBody">
+            <input type="text" placeholder="请输入用户名" name="conName"><br>
+            <input type="password" placeholder="请输入密码" name="conPwd">
+        </form>
+        <!-- 普通用户登陆结束 -->
+
+        <!-- 商家登陆 -->
+        <form action="admin/admin.html" method="post" id="merchantBody">
+            <input type="text" placeholder="请输入管理员用户名" name="merName"><br>
+            <input type="password" placeholder="请输入管理员密码" name="merPwd">
+        </form>
+        <!-- 商家登陆结束 -->
+        <span><a href="">忘记密码?</a></span>
+    </div>
+    <!-- 内容区结束 -->
+
+    <!-- 提交按钮 -->
+    <div id="bu">
+        <button type="submit" id="loginBu">登陆</button>
+        <button type="button" id="resigterBu"><span>没有帐号？</span><a href="register.html">立即注册</a></button>
+    </div>
+    <!-- 提交按钮结束 -->
+</div>
+<!-- 登陆区结束 -->
+</body>
+</html>

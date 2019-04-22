@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+
+    <style>
+        /*取消默认样式*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*设置logo区宽度*/
+        #logo {
+            width: 1920px;
+            /*background-color: red;*/
+        }
+
+        #logofont {
+            width: 1000px;
+            height: 90px;
+            /*background-color: blueviolet;*/
+            margin: 5px auto;
+        }
+
+        /*设置 logo 的字体大小*/
+        #logofont span:first-child {
+            font-size: 50px;
+            color: rgb(66, 133, 244);
+        }
+
+        #logofont span:nth-child(2) {
+            font-size: 40px;
+            color: rgb(234, 67, 53);
+        }
+
+        #logofont span:last-child {
+            font-size: 25px;
+            color: rgb(251, 188, 5);
+        }
+
+        /*设置 span 间距*/
+        #logofont span {
+            margin: 0 5px;
+        }
+
+
+        /*设置注册去区*/
+        #content {
+            width: 500px;
+            margin: 10px auto;
+            text-align: center;
+            /*background-color: skyblue;*/
+        }
+
+        /*设置用户登录字体*/
+        #content p:first-child {
+            font-size: 30px;
+        }
+
+        /*设置 表单 样式*/
+        #userName, #userPwd, #sub, #userComfirmPwd {
+            width: 400px;
+            height: 50px;
+            margin: 10px;
+        }
+
+        #sub {
+            font-size: 20px;
+            border: 0;
+            color: white;
+            border-radius: 10px;
+            background-color: rgb(250, 190, 0);
+        }
+
+        /*设置 鼠标 样式*/
+        #sub:hover {
+            cursor: pointer;
+        }
+
+        /*设置 结尾 字体*/
+        #content p:last-child {
+            font-size: 15px;
+
+        }
+
+        #name {
+            position: absolute;
+            right: 630px;
+            top: 170px;
+        }
+
+        #pwd {
+            position: absolute;
+            right: 645px;
+            top: 245px;
+        }
+
+    </style>
+
+    <!-- js -->
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            $("#sub").click(function () {
+
+                //每次点击前将提示删除
+                $("#name").text("");
+                $("#pwd").text("");
+
+                //弹出提示，符合全部条件，完成注册
+                if ($("#userName").val() == "") {
+                    $("#name").text("请输入用户名");
+                } else if ($("#userComfirmPwd").val() !== $("#userPwd").val()) {
+                    $("#pwd").text("两次密码不同");
+                } else if ($("#userComfirmPwd").val() == "" || $("#userPwd").val() == "") {
+                    $("#pwd").text("请输入密码！");
+                } else {
+                    $.post(
+                        "RegisterServlet", {
+                            "userName": $("#userName").val(),
+                            "userPwd": $("#userPwd").val()
+                        },
+                        function (result) {
+                            if (result !== "false") {
+                                window.location.href = "res/registerSuccess.html";
+                            } else {
+                                $("#name").text("用户名已存在");
+                            }
+                        }
+                    );
+                }
+
+
+            });
+        });
+    </script>
+</head>
+<body>
+<!--logo区-->
+<div id="logo">
+    <div id="logofont">
+        <span>X</span>
+        <span>x</span>
+        <span>租车</span>
+    </div>
+</div>
+<!--logo区结束-->
+
+<!--用户注册-->
+<div id="content">
+    <p>用户注册</p>
+    <form action="RegisterServlet" method="post" id="register">
+        <input type="text" name="userName" id="userName" placeholder="请输入用户名">
+        <input type="password" name="userPwd" id="userPwd" placeholder="请输入密码">
+        <input type="password" name="userPwd" id="userComfirmPwd" placeholder="重新输入密码">
+        <input type="button" id="sub" value="注册">
+    </form>
+    <p><span>已有帐号，</span><a href="index.html">直接登录</a></p>
+</div>
+
+<!--用户注册结束-->
+<span id="name"></span>
+<span id="pwd"></span>
+
+</body>
+</html>
+
